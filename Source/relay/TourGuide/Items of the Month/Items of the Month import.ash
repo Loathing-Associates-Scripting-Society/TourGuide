@@ -153,3 +153,4 @@ import "relay/TourGuide/Items of the Month/2024/Mayam Calendar.ash";
 import "relay/TourGuide/Items of the Month/2024/Roman Candelabra.ash";
 import "relay/TourGuide/Items of the Month/2024/Mini Kiwi.ash";
 import "relay/TourGuide/Items of the Month/2024/Tearaway Pants.ash";
+import "relay/TourGuide/Items of the Month/2024/Sept-Ember Censer.ash";
