@@ -1,0 +1,20 @@
+//Peace Turkey/Purkey
+RegisterResourceGenerationFunction("IOTMPeaceTurkeyGenerateResource");
+void IOTMPeaceTurkeyGenerateResource(ChecklistEntry [int] resource_entries)
+{
+	if (!lookupFamiliar("Peace Turkey").familiar_is_usable()) return;
+
+  //This is... inelegant. Because this will spit out an activation rate, it will occasionally spit out some badness. Also need to add peas to the banish handler.
+    int turkeyProc = 24;
+	if (my_familiar() != lookupFamiliar("peace turkey"));
+	{
+		int turkeyProc = 24 + sqrt(effective_familiar_weight($familiar[peace turkey]) + weight_adjustment());	
+	}
+	float PeasCount = available_amount($item[whirled peas]) + available_amount($item[handful of split pea soup])*2;
+	string [int] description;
+	string url = "familiar.php";
+	{
+		description.listAppend("" + PeasCount/2 + " peabanishers available (need to paste them)");
+		resource_entries.listAppend(ChecklistEntryMake("__familiar peace turkey", url, ChecklistSubentryMake(HTMLGenerateSpanFont(turkeyProc +"% Peace Turkey proc", "black"), "", description), 2));
+	}
+}
