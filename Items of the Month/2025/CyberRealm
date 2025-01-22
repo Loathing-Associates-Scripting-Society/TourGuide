@@ -1,4 +1,3 @@
-
 //CyberRealm
 RegisterTaskGenerationFunction("IOTYCyberRealmGenerateTasks");
 void IOTYCyberRealmGenerateTasks(ChecklistEntry [int] task_entries, ChecklistEntry [int] optional_task_entries, ChecklistEntry [int] future_task_entries)
@@ -33,7 +32,7 @@ void IOTYCyberRealmGenerateTasks(ChecklistEntry [int] task_entries, ChecklistEnt
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 1 reward!", "green"));
 				image_name = "__skill sleep(5)";
 			}
-			else if (zone1Turns > 20) {			
+			else if (zone1Turns > 19) {			
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 1 finished.", "grey"));
 			}
 		}
@@ -57,7 +56,7 @@ void IOTYCyberRealmGenerateTasks(ChecklistEntry [int] task_entries, ChecklistEnt
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 2 reward!", "green"));
 				image_name = "__skill sleep(5)";
 			}
-			else if (zone2Turns > 20) {			
+			else if (zone2Turns > 19) {			
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 2 finished.", "grey"));
 			}
 		}
@@ -81,7 +80,7 @@ void IOTYCyberRealmGenerateTasks(ChecklistEntry [int] task_entries, ChecklistEnt
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 3 reward!", "green"));
 				image_name = "__skill sleep(5)";
 			}
-			else if (zone3Turns > 20) {			
+			else if (zone3Turns > 19) {			
 				description.listAppend(HTMLGenerateSpanFont("Cyberzone 3 finished.", "grey"));
 			}
 		}
@@ -93,7 +92,12 @@ void IOTYCyberRealmGenerateTasks(ChecklistEntry [int] task_entries, ChecklistEnt
 		}
 		else
 		{
-			description.listAppend(HTMLGenerateSpanFont("Have " + (10 - CyberFree) + " free fights left!", "green"));
+			if (cyberfree < 10) {
+				description.listAppend(HTMLGenerateSpanFont("Have " + (10 - CyberFree) + " free fights left!", "green"));
+			}
+			else	{
+				description.listAppend(HTMLGenerateSpanFont("No free fights left", "red"));
+			}
 			optional_task_entries.listAppend(ChecklistEntryMake(image_name, url, ChecklistSubentryMake(60 - CyberZoneLeft + " CyberRealm adventures!", "", description), 10));
 		}
 }
@@ -110,6 +114,6 @@ void IOTYCyberRealmGenerateResource(ChecklistEntry [int] resource_entries)
     if (get_property_int("_cyberFreeFights") < 10) {
         string url = "place.php?whichplace=CyberRealm";
 		description.listAppend("Hack into the system!");
-		resource_entries.listAppend(ChecklistEntryMake("__skill stats+++", "", ChecklistSubentryMake(pluralise(CyberFree, "CyberRealm fight", "CyberRealm fights"), "", description), 8).ChecklistEntrySetCombinationTag("daily free fight").ChecklistEntrySetIDTag("CyberRealm free fight"));
+		resource_entries.listAppend(ChecklistEntryMake("__skill stats+++", url, ChecklistSubentryMake(pluralise(CyberFree, "CyberRealm fight", "CyberRealm fights"), "", description), 8).ChecklistEntrySetCombinationTag("daily free fight").ChecklistEntrySetIDTag("CyberRealm free fight"));
     }
 }
